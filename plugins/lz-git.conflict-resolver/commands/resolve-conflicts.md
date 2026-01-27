@@ -8,8 +8,14 @@ Resolve all Git merge conflicts in the current repository.
 
 ## Step 1: Create Backup Branch
 
-Before any resolution, create a backup branch. Generate the actual timestamp value (e.g., 20260127-143052) and use it directly in the command. Do NOT use shell interpolation like $(date).
-Example: `git branch backup/conflict-resolution-20260127-143052`
+Before any resolution, create a backup branch. Use the current date and time to generate a unique branch name.
+
+Format: `backup/conflict-resolution-YYYYMMDD-HHMMSS`
+- YYYYMMDD = today's date (e.g., 20260128)
+- HHMMSS = current time in 24-hour format (e.g., 143052 for 2:30:52 PM)
+
+Generate the actual values based on the current moment. Do NOT use zeros or placeholders.
+Do NOT use shell interpolation like $(date).
 
 ## Step 2: Identify All Conflicts
 
