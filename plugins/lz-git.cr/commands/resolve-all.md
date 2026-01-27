@@ -10,8 +10,8 @@ Use the lz-git.merge-conflicts skill for conflict resolution strategies.
 
 ## Step 1: Create Backup Branch
 
-Before any resolution, create a backup branch. Use the current timestamp in the branch name.
-Run: `git branch backup/conflict-resolution-YYYYMMDD-HHMMSS` (replace with actual timestamp)
+Before any resolution, create a backup branch. Generate the actual timestamp value (e.g., 20260127-143052) and use it directly in the command. Do NOT use shell interpolation like $(date).
+Example: `git branch backup/conflict-resolution-20260127-143052`
 
 ## Step 2: Identify All Conflicts
 
