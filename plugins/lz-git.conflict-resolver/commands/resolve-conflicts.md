@@ -10,11 +10,12 @@ Resolve all Git merge conflicts in the current repository.
 
 Before any resolution, create a backup branch. Use the current date and time to generate a unique branch name.
 
-Format: `backup/conflict-resolution-YYYYMMDD-HHmmss`
-- YYYYMMDD = today's date (e.g., 20260128)
-- HHmmss = current time in 24-hour format (e.g., 143052 for 2:30:52 PM)
+Format: `backup/conflict-resolution-YYYYMMDD-HHmmssZ`
+- YYYYMMDD = today's date in UTC (e.g., 20260128)
+- HHmmss = current time in UTC 24-hour format (e.g., 143052 for 14:30:52 UTC)
+- Z = UTC timezone suffix
 
-Generate the actual values based on the current moment. Do NOT use zeros or placeholders.
+Generate the actual UTC values based on the current moment. Do NOT use zeros or placeholders.
 Do NOT use shell interpolation like $(date).
 
 ## Step 2: Identify All Conflicts
