@@ -15,16 +15,11 @@ If the target file $1 is NOT in the list, inform user and suggest using `/lz-git
 
 ## Step 2: Create Backup
 
-Create a backup branch before making changes.
+Create a backup branch before making changes using a UTC timestamp.
 
-First, get the UTC timestamp:
+Get UTC timestamp and create backup branch:
 ```
-node $CLAUDE_PLUGIN_ROOT/scripts/utc-timestamp.js
-```
-
-Then create the backup branch using the output:
-```
-git branch backup/conflict-resolution-<timestamp>
+git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")
 ```
 
 ## Step 3: Read and Analyze File

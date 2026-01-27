@@ -8,16 +8,11 @@ Resolve all Git merge conflicts in the current repository.
 
 ## Step 1: Create Backup Branch
 
-Create a backup branch before making changes.
+Create a backup branch before making changes using a UTC timestamp.
 
-First, get the UTC timestamp:
+Get UTC timestamp and create backup branch:
 ```
-node $CLAUDE_PLUGIN_ROOT/scripts/utc-timestamp.js
-```
-
-Then create the backup branch using the output:
-```
-git branch backup/conflict-resolution-<timestamp>
+git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")
 ```
 
 ## Step 2: Identify All Conflicts
