@@ -15,12 +15,7 @@ Get current git status (includes merge/rebase state):
 Get all files with unresolved conflicts:
 !`git diff --name-only --diff-filter=U`
 
-## Step 3: Check Conflict Details
-
-Show conflict markers in files:
-!`git diff --check`
-
-## Step 4: Analyze and Report
+## Step 3: Analyze and Report
 
 Based on the git status output, report:
 - Whether in MERGING, REBASING, or normal state
@@ -28,11 +23,10 @@ Based on the git status output, report:
 - Current operation and branches involved
 
 For each conflicted file, identify:
-- File path
-- File type (code, config, lock file, etc.)
-- Brief description of conflict nature
+- File path and type (code, config, lock file)
+- Use Read tool to examine conflict markers if needed
 
-## Step 5: Suggest Next Steps
+## Step 4: Suggest Next Steps
 
 Based on the conflict state, suggest:
 - `/lz-git.conflict-resolver:resolve-conflicts` (or `/lz-git.cr:resolve-all`) for batch resolution
