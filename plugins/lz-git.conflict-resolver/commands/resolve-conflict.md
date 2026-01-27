@@ -1,6 +1,6 @@
 ---
 description: Interactively resolve conflicts in a single file
-allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch:*), Bash(git add:*), AskUserQuestion
+allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch:*), Bash(git branch --list:*), Bash(git add:*), AskUserQuestion
 argument-hint: <file-path>
 ---
 
@@ -15,15 +15,17 @@ If the target file $1 is NOT in the list, inform user and suggest using `/lz-git
 
 ## Step 2: Create Backup
 
-Create backup branch if not already created. Use the current date and time to generate a unique branch name.
+Create a backup branch before making changes.
 
-Format: `backup/conflict-resolution-YYYYMMDD-HHmmssZ`
-- YYYYMMDD = today's date in UTC (e.g., 20260128)
-- HHmmss = current time in UTC 24-hour format (e.g., 143052 for 14:30:52 UTC)
-- Z = UTC timezone suffix
+1. First, list existing backup branches to find a unique name:
+   !`git branch --list backup/conflict-resolution-*`
 
-Generate the actual UTC values based on the current moment. Do NOT use zeros or placeholders.
-Do NOT use shell interpolation like $(date).
+2. Create a new backup branch with today's date (YYYYMMDD format).
+   - If `backup/conflict-resolution-YYYYMMDD` doesn't exist, use that
+   - If it exists, append `-2`, `-3`, etc. until finding an unused name
+   - Example: `backup/conflict-resolution-20260128` or `backup/conflict-resolution-20260128-2`
+
+Do NOT use shell interpolation like $(date). Use today's date from context.
 
 ## Step 3: Read and Analyze File
 
