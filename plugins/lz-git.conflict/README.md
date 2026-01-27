@@ -13,15 +13,15 @@ A Claude Code plugin for autonomously resolving Git merge conflicts with smart s
 
 ## Commands
 
-| Command | Alias | Description |
-|---------|-------|-------------|
-| `/lz-git.conflict-resolver:resolve-conflicts` | `/lz-git.cr:resolve-all` | Resolve all conflicts with batch preview mode |
-| `/lz-git.conflict-resolver:resolve-conflict <file>` | `/lz-git.cr:resolve <file>` | Interactively resolve a single file's conflicts |
-| `/lz-git.conflict-resolver:conflict-status` | `/lz-git.cr:status` | Show current conflict status |
+| Command | Description |
+|---------|-------------|
+| `/lz-git.conflict:resolve-all` | Resolve all conflicts with batch preview mode |
+| `/lz-git.conflict:resolve <file>` | Interactively resolve a single file's conflicts |
+| `/lz-git.conflict:status` | Show current conflict status |
 
 ## Agent
 
-The `lz-git.conflict-resolver:conflict-resolver` agent can:
+The `lz-git.conflict:conflict-resolver` agent can:
 - Detect conflicts proactively after git operations
 - Analyze conflict patterns and determine best resolution strategy
 - Create backup branches before making changes
@@ -32,18 +32,14 @@ The `lz-git.conflict-resolver:conflict-resolver` agent can:
 Add to your Claude Code plugins:
 
 ```bash
-# Full plugin
-claude --plugin-dir /path/to/lz-git.conflict-resolver
-
-# With alias (for shorter commands)
-claude --plugin-dir /path/to/lz-git.conflict-resolver --plugin-dir /path/to/lz-git.cr
+claude --plugin-dir /path/to/lz-git.conflict
 ```
 
 Or copy to your project's `.claude-plugin/` directory.
 
 ## Configuration
 
-Create `.claude/lz-git.conflict-resolver.local.md` for custom settings:
+Create `.claude/lz-git.conflict.local.md` for custom settings:
 
 ```markdown
 ---

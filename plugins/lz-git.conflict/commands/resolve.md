@@ -11,7 +11,7 @@ Interactively resolve merge conflicts in a single file: $1
 Check that the file has conflicts by listing conflicted files:
 !`git diff --name-only --diff-filter=U`
 
-If the target file $1 is NOT in the list, inform user and suggest using `/lz-git.conflict-resolver:conflict-status` (or `/lz-git.cr:status`) to see conflicted files.
+If the target file $1 is NOT in the list, inform user and suggest using `/lz-git.conflict:status` to see conflicted files.
 
 ## Step 2: Create Backup
 
@@ -82,4 +82,4 @@ Report:
 - Remaining conflicted files (if any)
 - Next steps
 
-Use the lz-git.merge-conflicts skill for resolution strategies.
+Use the merge-conflicts skill for resolution strategies.

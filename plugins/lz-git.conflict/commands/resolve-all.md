@@ -90,4 +90,4 @@ Report:
 - Any files that need human review
 - Next steps (commit or continue rebase)
 
-Use the lz-git.merge-conflicts skill for detailed resolution strategies.
+Use the merge-conflicts skill for detailed resolution strategies.

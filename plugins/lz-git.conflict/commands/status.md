@@ -29,6 +29,6 @@ For each conflicted file, identify:
 ## Step 4: Suggest Next Steps
 
 Based on the conflict state, suggest:
-- `/lz-git.conflict-resolver:resolve-conflicts` (or `/lz-git.cr:resolve-all`) for batch resolution
-- `/lz-git.conflict-resolver:resolve-conflict <file>` (or `/lz-git.cr:resolve <file>`) for single file
+- `/lz-git.conflict:resolve-all` for batch resolution
+- `/lz-git.conflict:resolve <file>` for single file
 - Relevant git commands (abort, continue, etc.)

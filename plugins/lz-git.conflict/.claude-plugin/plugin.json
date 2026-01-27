@@ -1,5 +1,5 @@
 {
-  "name": "lz-git.conflict-resolver",
+  "name": "lz-git.conflict",
   "version": "0.1.0",
   "description": "Autonomously resolve Git merge conflicts with smart semantic analysis",
   "author": {

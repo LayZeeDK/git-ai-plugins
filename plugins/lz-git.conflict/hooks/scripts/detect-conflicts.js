@@ -27,7 +27,7 @@ process.stdin.on('end', () => {
       console.log(JSON.stringify({
         continue: true,
         suppressOutput: false,
-        systemMessage: 'Merge conflicts detected. Use /lz-git.conflict-resolver:resolve-conflicts or /lz-git.cr:resolve-all to resolve them.'
+        systemMessage: 'Merge conflicts detected. Use /lz-git.conflict:resolve-all to resolve them.'
       }));
       process.exit(0);
     }
