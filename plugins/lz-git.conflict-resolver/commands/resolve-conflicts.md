@@ -10,14 +10,19 @@ Resolve all Git merge conflicts in the current repository.
 
 Create a backup branch before making changes.
 
-1. Get the current UTC timestamp by running:
-   !`node ${CLAUDE_PLUGIN_ROOT}/scripts/utc-timestamp.js`
+**IMPORTANT: You MUST run the timestamp script first. Do NOT guess or use placeholder values like 000000.**
 
-2. Use the output to create the backup branch:
-   `git branch backup/conflict-resolution-<timestamp>`
+First, execute this command to get the UTC timestamp:
+```
+node $CLAUDE_PLUGIN_ROOT/scripts/utc-timestamp.js
+```
 
-   Example: If the script outputs `20260128-143052Z`, run:
-   `git branch backup/conflict-resolution-20260128-143052Z`
+Wait for the output (e.g., `20260128-143052Z`), then use that exact value to create the backup branch:
+```
+git branch backup/conflict-resolution-20260128-143052Z
+```
+
+Replace `20260128-143052Z` with the actual output from the script.
 
 ## Step 2: Identify All Conflicts
 
