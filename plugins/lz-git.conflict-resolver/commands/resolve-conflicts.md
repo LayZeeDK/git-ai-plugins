@@ -8,18 +8,15 @@ Resolve all Git merge conflicts in the current repository.
 
 ## Step 1: Create Backup Branch
 
-Before any resolution, create a backup branch:
-
-```bash
-git branch backup/conflict-resolution-$(date +%Y%m%d-%H%M%S)
-```
+Before any resolution, create a backup branch. Use the current timestamp in the branch name.
+Run: `git branch backup/conflict-resolution-YYYYMMDD-HHMMSS` (replace with actual timestamp)
 
 ## Step 2: Identify All Conflicts
 
 List all files with conflicts:
-!`git diff --name-only --diff-filter=U 2>/dev/null || echo "NO_CONFLICTS"`
+!`git diff --name-only --diff-filter=U`
 
-If no conflicts exist, inform the user and exit.
+If no output (empty list), inform the user there are no conflicts and exit.
 
 ## Step 3: Determine Resolution Mode
 
@@ -63,10 +60,7 @@ After resolving each file:
 
 ## Step 7: Stage and Report
 
-Stage all resolved files:
-```bash
-git add <resolved-files>
-```
+Stage all resolved files using `git add <filename>` for each resolved file.
 
 Report:
 - Number of files resolved

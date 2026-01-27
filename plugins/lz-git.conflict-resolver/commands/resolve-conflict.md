@@ -8,17 +8,15 @@ Interactively resolve merge conflicts in a single file: $1
 
 ## Step 1: Validate File
 
-Check that the file exists and has conflicts:
-!`git diff --name-only --diff-filter=U 2>/dev/null | grep -q "^$1$" && echo "HAS_CONFLICTS" || echo "NO_CONFLICTS"`
+Check that the file has conflicts by listing conflicted files:
+!`git diff --name-only --diff-filter=U`
 
-If output is "NO_CONFLICTS", inform user and suggest using `/lz-git.conflict-resolver:conflict-status` (or `/lz-git.cr:status`) to see conflicted files.
+If the target file $1 is NOT in the list, inform user and suggest using `/lz-git.conflict-resolver:conflict-status` (or `/lz-git.cr:status`) to see conflicted files.
 
 ## Step 2: Create Backup
 
-Create backup branch if not already created:
-```bash
-git branch backup/conflict-resolution-$(date +%Y%m%d-%H%M%S) 2>/dev/null || true
-```
+Create backup branch if not already created. Use the current timestamp in the branch name.
+Run: `git branch backup/conflict-resolution-YYYYMMDD-HHMMSS` (replace with actual timestamp)
 
 ## Step 3: Read and Analyze File
 
@@ -54,10 +52,7 @@ After all conflicts in the file are resolved:
 
 ## Step 5: Stage
 
-Stage the resolved file:
-```bash
-git add $1
-```
+Stage the resolved file using `git add` with the filename.
 
 Report:
 - Number of conflicts resolved in this file

@@ -7,35 +7,30 @@ Show the current Git merge conflict status.
 
 ## Step 1: Check Repository State
 
-Determine current Git state:
-!`git status --porcelain 2>/dev/null | head -20`
-
-Check if in merge/rebase state:
-!`test -f .git/MERGE_HEAD && echo "MERGING" || (test -d .git/rebase-merge && echo "REBASING" || echo "NORMAL")`
+Get current git status (includes merge/rebase state):
+!`git status`
 
 ## Step 2: List Conflicted Files
 
 Get all files with unresolved conflicts:
-!`git diff --name-only --diff-filter=U 2>/dev/null`
+!`git diff --name-only --diff-filter=U`
 
-## Step 3: Analyze Each Conflicted File
+## Step 3: Check Conflict Details
 
-For each conflicted file, report:
+Show conflict markers in files:
+!`git diff --check`
+
+## Step 4: Analyze and Report
+
+Based on the git status output, report:
+- Whether in MERGING, REBASING, or normal state
+- Total files with conflicts
+- Current operation and branches involved
+
+For each conflicted file, identify:
 - File path
 - File type (code, config, lock file, etc.)
-- Number of conflict sections
 - Brief description of conflict nature
-
-Count conflicts per file:
-!`git diff --check 2>/dev/null | grep "conflict" | cut -d: -f1 | uniq -c`
-
-## Step 4: Provide Summary
-
-Report:
-- Total files with conflicts
-- Total conflict sections
-- Current operation (merge/rebase/cherry-pick)
-- Branches involved (if determinable)
 
 ## Step 5: Suggest Next Steps
 
