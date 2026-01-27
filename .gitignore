@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Package managers
+npm-debug.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# AI and MCP servers
+.playwright-mcp/
+tmpclaude-*-cwd/
+!tmpclaude--cwd/
+nul
+NUL
