@@ -1,6 +1,6 @@
 ---
 description: Resolve all Git merge conflicts (alias for /lz-git.conflict-resolver:resolve-conflicts)
-allowed-tools: Read, Write, Edit, Bash(git:*), Glob, Grep
+allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch:*), Bash(git add:*), Glob, Grep
 argument-hint: [--mode=autonomous|interactive|batch]
 ---
 

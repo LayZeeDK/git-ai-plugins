@@ -1,6 +1,6 @@
 ---
 description: Show current Git conflict status (alias for /lz-git.conflict-resolver:conflict-status)
-allowed-tools: Bash(git:*), Read
+allowed-tools: Bash(git status:*), Bash(git diff:*), Read
 ---
 
 Show the current Git merge conflict status.

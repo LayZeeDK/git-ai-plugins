@@ -1,6 +1,6 @@
 ---
 description: Interactively resolve conflicts in a single file (alias for /lz-git.conflict-resolver:resolve-conflict)
-allowed-tools: Read, Write, Edit, Bash(git:*), AskUserQuestion
+allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch:*), Bash(git add:*), AskUserQuestion
 argument-hint: <file-path>
 ---
 
