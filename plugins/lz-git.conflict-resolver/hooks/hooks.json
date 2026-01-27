@@ -1,5 +1,5 @@
 {
-  "description": "Detect Git merge conflicts after git operations and offer to resolve them",
+  "description": "Proactive conflict detection after git merge, pull, and rebase operations",
   "hooks": {
     "PostToolUse": [
       {
@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Check if the Bash command was a git operation (merge, pull, rebase, cherry-pick) that resulted in merge conflicts. Look for:\n- 'CONFLICT' in the output\n- 'Automatic merge failed' messages\n- 'error: could not apply' for rebase\n- Unmerged paths\n\nIf conflicts were detected, respond with a systemMessage offering to help resolve them using the lz-git.conflict-resolver:conflict-resolver agent. If no conflicts or not a git operation, respond with empty systemMessage.\n\nTool input: $TOOL_INPUT\nTool result: $TOOL_RESULT",
+            "prompt": "Check the output of this Bash command for merge conflicts. Look for 'CONFLICT' in the output or status messages containing 'MERGING', 'REBASING', or 'CHERRY_PICKING'. If you find conflict indicators: return {\"continue\": true, \"suppressOutput\": false, \"systemMessage\": \"Merge conflicts detected. Would you like me to help resolve them using /lz-git.conflict-resolver:resolve-conflicts?\"}. If no conflicts are found or this is not a git command, return {\"continue\": true, \"suppressOutput\": true, \"systemMessage\": \"\"}. Important: Always return valid JSON with exactly these three fields.",
             "timeout": 10
           }
         ]
