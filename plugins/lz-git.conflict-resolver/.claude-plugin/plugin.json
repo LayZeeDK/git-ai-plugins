@@ -1,0 +1,12 @@
+{
+  "name": "lz-git.conflict-resolver",
+  "version": "0.1.0",
+  "description": "Autonomously resolve Git merge conflicts with smart semantic analysis",
+  "author": {
+    "name": "LayZeeDK",
+    "url": "https://github.com/LayZeeDK"
+  },
+  "repository": "https://github.com/LayZeeDK/git-ai-plugins",
+  "license": "MIT",
+  "keywords": ["git", "merge", "conflicts", "resolution", "rebase"]
+}
