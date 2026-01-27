@@ -24,10 +24,23 @@ Read the file: @$1
 
 For each conflict section found (marked by `<<<<<<<`):
 
-1. **Show the conflict clearly**:
-   - Display HEAD version (current branch)
-   - Display incoming version
+1. **Show the conflict clearly** using markdown code blocks:
+   - Display HEAD version (current branch) in a fenced code block with appropriate language
+   - Display incoming version in a separate fenced code block
    - Explain what each side appears to be doing
+
+   Example format:
+   ```
+   **HEAD version (current branch):**
+   ```js
+   // code here
+   ```
+
+   **Incoming version:**
+   ```js
+   // code here
+   ```
+   ```
 
 2. **Propose a resolution**:
    - Analyze both versions semantically

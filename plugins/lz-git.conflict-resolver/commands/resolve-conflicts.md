@@ -30,10 +30,23 @@ Parse arguments from: $ARGUMENTS
 
 1. Read the entire file to understand context
 2. Identify all conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
-3. Analyze each conflict:
+3. Analyze each conflict and display using markdown code blocks:
    - What does the current branch's code do?
    - What does the incoming branch's code do?
    - Can changes be combined semantically?
+
+When showing conflicts to the user, use fenced code blocks with the appropriate language:
+```
+**HEAD version:**
+```js
+// current branch code
+```
+
+**Incoming version:**
+```js
+// incoming branch code
+```
+```
 
 ## Step 5: Apply Smart Merge Strategy
 
