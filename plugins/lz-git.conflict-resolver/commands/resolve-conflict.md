@@ -17,9 +17,9 @@ If the target file $1 is NOT in the list, inform user and suggest using `/lz-git
 
 Create backup branch if not already created. Use the current date and time to generate a unique branch name.
 
-Format: `backup/conflict-resolution-YYYYMMDD-HHMMSS`
+Format: `backup/conflict-resolution-YYYYMMDD-HHmmss`
 - YYYYMMDD = today's date (e.g., 20260128)
-- HHMMSS = current time in 24-hour format (e.g., 143052 for 2:30:52 PM)
+- HHmmss = current time in 24-hour format (e.g., 143052 for 2:30:52 PM)
 
 Generate the actual values based on the current moment. Do NOT use zeros or placeholders.
 Do NOT use shell interpolation like $(date).
