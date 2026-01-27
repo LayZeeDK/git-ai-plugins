@@ -22,9 +22,25 @@ Based on the git status output, report:
 - Total files with conflicts
 - Current operation and branches involved
 
-For each conflicted file, identify:
-- File path and type (code, config, lock file)
-- Use Read tool to examine conflict markers if needed
+For each conflicted file:
+1. Use Read tool to read the file content
+2. Display each conflict section using fenced code blocks with appropriate language:
+
+```
+**Conflict in `path/to/file.js`:**
+
+HEAD (current branch):
+```js
+// current branch code here
+```
+
+Incoming (feature branch):
+```js
+// incoming branch code here
+```
+```
+
+This format ensures syntax highlighting for the conflicting code sections.
 
 ## Step 4: Suggest Next Steps
 
