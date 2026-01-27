@@ -6,8 +6,8 @@
         "matcher": "Bash",
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "Check the output of this Bash command for merge conflicts. Look for 'CONFLICT' in the output or status messages containing 'MERGING', 'REBASING', or 'CHERRY_PICKING'. If you find conflict indicators: return {\"continue\": true, \"suppressOutput\": false, \"systemMessage\": \"Merge conflicts detected. Would you like me to help resolve them using /lz-git.conflict-resolver:resolve-conflicts?\"}. If no conflicts are found or this is not a git command, return {\"continue\": true, \"suppressOutput\": true, \"systemMessage\": \"\"}. Important: Always return valid JSON with exactly these three fields.",
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/detect-conflicts.sh",
             "timeout": 10
           }
         ]
