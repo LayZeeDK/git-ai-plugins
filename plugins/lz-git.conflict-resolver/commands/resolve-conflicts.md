@@ -1,6 +1,6 @@
 ---
 description: Resolve all Git merge conflicts with batch preview
-allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch:*), Bash(git branch --list:*), Bash(git add:*), Glob, Grep
+allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch:*), Bash(git add:*), Bash(node:*), Glob, Grep
 argument-hint: [--mode=autonomous|interactive|batch]
 ---
 
@@ -10,15 +10,14 @@ Resolve all Git merge conflicts in the current repository.
 
 Create a backup branch before making changes.
 
-1. First, list existing backup branches to find a unique name:
-   !`git branch --list backup/conflict-resolution-*`
+1. Get the current UTC timestamp by running:
+   !`node ${CLAUDE_PLUGIN_ROOT}/scripts/utc-timestamp.js`
 
-2. Create a new backup branch with today's date (YYYYMMDD format).
-   - If `backup/conflict-resolution-YYYYMMDD` doesn't exist, use that
-   - If it exists, append `-2`, `-3`, etc. until finding an unused name
-   - Example: `backup/conflict-resolution-20260128` or `backup/conflict-resolution-20260128-2`
+2. Use the output to create the backup branch:
+   `git branch backup/conflict-resolution-<timestamp>`
 
-Do NOT use shell interpolation like $(date). Use today's date from context.
+   Example: If the script outputs `20260128-143052Z`, run:
+   `git branch backup/conflict-resolution-20260128-143052Z`
 
 ## Step 2: Identify All Conflicts
 
