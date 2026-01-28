@@ -15,12 +15,8 @@ If the target file $1 is NOT in the list, inform user and suggest using `/lz-git
 
 ## Step 2: Create Backup
 
-Create a backup branch before making changes using a UTC timestamp.
-
-Get UTC timestamp and create backup branch:
-```
-git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")
-```
+Create a backup branch before making changes. Run this exact command (works on all platforms via Git Bash):
+!`git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")`
 
 ## Step 3: Read and Analyze File
 
