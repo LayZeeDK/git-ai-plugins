@@ -24,23 +24,31 @@ Based on the git status output, report:
 
 For each conflicted file:
 1. Use Read tool to read the file content
-2. Display each conflict section using fenced code blocks with appropriate language:
+2. Display each conflict section using fenced code blocks with the language derived from file extension:
+   - `.ts` → `typescript`
+   - `.js` → `javascript`
+   - `.py` → `python`
+   - `.json` → `json`
+   - `.yaml`/`.yml` → `yaml`
+   - etc.
 
-```
-**Conflict in `path/to/file.js`:**
+Example output format:
+
+````
+**Conflict in `path/to/file.ts`:**
 
 HEAD (current branch):
-```js
+```typescript
 // current branch code here
 ```
 
 Incoming (feature branch):
-```js
+```typescript
 // incoming branch code here
 ```
-```
+````
 
-This format ensures syntax highlighting for the conflicting code sections.
+This format ensures proper syntax highlighting for the conflicting code sections.
 
 ## Step 4: Suggest Next Steps
 

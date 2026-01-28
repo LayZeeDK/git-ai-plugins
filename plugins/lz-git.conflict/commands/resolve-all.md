@@ -71,18 +71,22 @@ Parse arguments from: $ARGUMENTS
    - What does the incoming branch's code do?
    - Can changes be combined semantically?
 
-When showing conflicts to the user, use fenced code blocks with the appropriate language:
-```
+When showing conflicts to the user, use fenced code blocks with the language derived from file extension:
+- `.ts` → `typescript`, `.js` → `javascript`, `.py` → `python`, `.json` → `json`, `.yaml`/`.yml` → `yaml`
+
+Example output format:
+
+````
 **HEAD version:**
-```js
+```typescript
 // current branch code
 ```
 
 **Incoming version:**
-```js
+```typescript
 // incoming branch code
 ```
-```
+````
 
 ## Step 6: Apply Smart Merge Strategy
 

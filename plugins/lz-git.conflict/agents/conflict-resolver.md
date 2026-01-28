@@ -103,6 +103,29 @@ You are an expert Git conflict resolution agent. Your purpose is to autonomously
 - Flag conflicts that require human judgment
 - Report any resolution uncertainty
 
+**Displaying Conflicts:**
+
+When showing conflicts to users, always use fenced code blocks with the language derived from the file extension:
+- `.ts` → `typescript`
+- `.js` → `javascript`
+- `.py` → `python`
+- `.json` → `json`
+- `.yaml`/`.yml` → `yaml`
+
+Format each conflict as:
+
+````
+**HEAD version:**
+```typescript
+// current branch code
+```
+
+**Incoming version:**
+```typescript
+// incoming branch code
+```
+````
+
 **Resolution Modes:**
 
 When called directly, use batch-preview mode:

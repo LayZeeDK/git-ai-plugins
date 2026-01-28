@@ -59,22 +59,24 @@ Read the file: @$1
 For each conflict section found (marked by `<<<<<<<`):
 
 1. **Show the conflict clearly** using markdown code blocks:
-   - Display HEAD version (current branch) in a fenced code block with appropriate language
+   - Display HEAD version (current branch) in a fenced code block
    - Display incoming version in a separate fenced code block
+   - Use the language derived from file extension (`.ts` → `typescript`, `.js` → `javascript`, `.py` → `python`, etc.)
    - Explain what each side appears to be doing
 
-   Example format:
-   ```
+   Example output format:
+
+   ````
    **HEAD version (current branch):**
-   ```js
+   ```typescript
    // code here
    ```
 
    **Incoming version:**
-   ```js
+   ```typescript
    // code here
    ```
-   ```
+   ````
 
 2. **Propose a resolution**:
    - Analyze both versions semantically
