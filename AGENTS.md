@@ -51,6 +51,28 @@ plugins/<plugin-name>/
 
 **Tool Restrictions**: Commands should use `allowed-tools` to restrict available tools and prevent unintended modifications.
 
+### allowed-tools Syntax
+
+Use modern `Bash(command *)` syntax (space before wildcard). The colon syntax `Bash(command:*)` is deprecated.
+
+```yaml
+# Correct - modern syntax
+allowed-tools: Bash(git branch *), Bash(git status *), Read
+
+# Deprecated - legacy syntax (avoid)
+allowed-tools: Bash(git branch:*), Bash(git status:*), Read
+```
+
+Pattern examples:
+
+| Pattern | Matches |
+|---------|---------|
+| `Bash(git branch *)` | `git branch`, `git branch -a`, `git branch backup/...` |
+| `Bash(git *)` | All git commands |
+| `Bash(npm run *)` | All npm run scripts |
+
+For agents, use the array format: `tools: ["Bash", "Read", "Edit"]`
+
 **Arguments**: Use `argument-hint` to document expected arguments. Parse values from `$ARGUMENTS`.
 
 **Safety**: Always create backup branches before destructive operations using UTC timestamps: `backup/<operation>-YYYYMMDD-HHMMSS`
