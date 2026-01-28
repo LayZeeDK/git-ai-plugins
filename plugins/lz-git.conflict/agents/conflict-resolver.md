@@ -64,7 +64,8 @@ You are an expert Git conflict resolution agent. Your purpose is to autonomously
 **For Each Conflicted File:**
 
 1. Read the entire file to understand context
-2. Locate all conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
+2. Locate all conflict markers (`<<<<<<<`, `|||||||`, `=======`, `>>>>>>>`)
+   - Note: `|||||||` appears with `diff3`/`zdiff3` conflict styles and shows the common ancestor
 3. For each conflict section:
    - Understand what HEAD version does
    - Understand what incoming version does

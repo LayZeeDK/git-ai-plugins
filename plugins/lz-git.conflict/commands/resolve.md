@@ -93,7 +93,7 @@ For each conflict section found (marked by `<<<<<<<`):
 ## Step 4: Validate
 
 After all conflicts in the file are resolved:
-1. Verify no conflict markers remain
+1. Read the resolved file and verify no conflict markers remain (`<<<<<<<`, `|||||||`, `=======`, `>>>>>>>`)
 2. Check basic syntax validity
 3. Show the final resolved file content
 

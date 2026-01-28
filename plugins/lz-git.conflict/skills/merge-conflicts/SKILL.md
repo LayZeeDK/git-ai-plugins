@@ -12,7 +12,7 @@ This skill provides knowledge and strategies for resolving Git merge conflicts i
 
 ## Conflict Marker Format
 
-Git marks conflicts with these markers:
+Git marks conflicts with these markers (standard `merge` style):
 
 ```
 <<<<<<< HEAD (or current branch name)
@@ -21,6 +21,22 @@ Current branch's version of the code
 Incoming branch's version of the code
 >>>>>>> branch-name (or commit hash)
 ```
+
+With `diff3` or `zdiff3` conflict style (`merge.conflictstyle` config), a base section is included:
+
+```
+<<<<<<< HEAD
+Current branch's version
+||||||| base (common ancestor)
+Original version before either branch changed it
+=======
+Incoming branch's version
+>>>>>>> branch-name
+```
+
+The `zdiff3` style (Git 2.35+) is "zealous" - it trims common lines from the conflict region, making conflicts shorter.
+
+**All conflict markers to detect:** `<<<<<<<`, `|||||||`, `=======`, `>>>>>>>`
 
 For rebase conflicts, the meanings are reversed:
 - `HEAD` contains the branch being rebased onto (the "new base")

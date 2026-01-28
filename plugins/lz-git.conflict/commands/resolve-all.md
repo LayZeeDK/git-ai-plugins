@@ -103,7 +103,10 @@ For lock files (package-lock.json, yarn.lock, pnpm-lock.yaml):
 ## Step 7: Validate Resolutions
 
 After resolving each file:
-1. Ensure all conflict markers are removed
+1. Use the Grep tool (not bash grep) to verify no conflict markers remain:
+   - Pattern: `<<<<<<<|[|]{7}|=======|>>>>>>>`
+   - This covers all `merge.conflictstyle` settings (merge, diff3, zdiff3)
+   - Search each resolved file
 2. Check syntax validity where possible
 3. Report what was combined from each side
 
