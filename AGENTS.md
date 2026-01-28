@@ -59,6 +59,46 @@ plugins/<plugin-name>/
 
 **File Type Awareness**: Handle different file types appropriately (source code, config files, lock files, etc.).
 
+## Hooks
+
+### Environment Variables
+
+`${CLAUDE_PLUGIN_ROOT}` is substituted by the plugin system in `hooks.json` but **NOT** in command markdown files with `!` backtick syntax. For commands, use inline approaches or the `date` command (available via Git Bash on all platforms).
+
+### PostToolUse Hook Output
+
+Two approaches for adding information after tool execution:
+
+| Approach | Behavior |
+|----------|----------|
+| `additionalContext` | Claude "considers" it but may paraphrase |
+| `decision: "block"` with `reason` | Claude is automatically prompted and acts on it |
+
+Use `decision: "block"` when you need Claude to take specific action:
+
+```json
+{
+  "decision": "block",
+  "reason": "Describe what Claude should do or tell the user."
+}
+```
+
+### Hook Input Formats
+
+PostToolUse hooks may receive different input formats. Handle both:
+
+```javascript
+const result = input.tool_result || input.tool_response?.stdout || '';
+```
+
+### Cross-Platform Timestamps
+
+For backup branches, use `date -u` which works on macOS, Linux, and Windows (via Git Bash):
+
+```bash
+git branch backup/operation-$(date -u +"%Y%m%d-%H%M%S")
+```
+
 ## Code Style
 
 - Use Node.js for scripts requiring cross-platform compatibility
