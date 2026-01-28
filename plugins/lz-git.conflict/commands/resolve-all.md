@@ -1,6 +1,6 @@
 ---
 description: Resolve all Git merge conflicts with batch preview
-allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch *:*), Bash(git add:*), Bash(node:*), Glob, Grep
+allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(node *), Glob, Grep
 argument-hint: [--mode=autonomous|interactive|batch]
 ---
 
