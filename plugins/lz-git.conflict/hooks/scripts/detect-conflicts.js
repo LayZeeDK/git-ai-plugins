@@ -30,8 +30,8 @@ process.stdin.on('end', () => {
         reason: 'Merge conflicts detected. Inform the user of their options:\n' +
           '- /lz-git.conflict:resolve - resolve all conflicts with batch preview\n' +
           '- /lz-git.conflict:resolve <file> - resolve a single file interactively\n' +
-          '- /lz-git.conflict:accept-ours - accept current branch for all conflicts\n' +
-          '- /lz-git.conflict:accept-theirs - accept incoming branch for all conflicts\n' +
+          '- /lz-git.conflict:ours - accept current branch for all conflicts\n' +
+          '- /lz-git.conflict:theirs - accept incoming branch for all conflicts\n' +
           '- /lz-git.conflict:abort - abort and restore pre-conflict state'
       }));
     }

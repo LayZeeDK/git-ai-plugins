@@ -21,8 +21,8 @@ A Claude Code plugin for autonomously resolving Git merge conflicts with smart s
 | `/lz-git.conflict:resolve <file>` | Interactively resolve a single file's conflicts |
 | `/lz-git.conflict:resolve -a` | Resolve all conflicts autonomously |
 | `/lz-git.conflict:resolve -i` | Resolve all conflicts interactively (ask per conflict) |
-| `/lz-git.conflict:accept-ours [file]` | Accept current branch version for all/specific conflicts |
-| `/lz-git.conflict:accept-theirs [file]` | Accept incoming branch version for all/specific conflicts |
+| `/lz-git.conflict:ours [file]` | Accept current branch version for all/specific conflicts |
+| `/lz-git.conflict:theirs [file]` | Accept incoming branch version for all/specific conflicts |
 | `/lz-git.conflict:abort` | Abort conflict resolution and restore pre-conflict state |
 | `/lz-git.conflict:status` | Show current conflict status |
 
