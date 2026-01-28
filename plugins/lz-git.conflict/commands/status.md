@@ -1,6 +1,6 @@
 ---
 description: Show current Git conflict status
-allowed-tools: Bash(git status:*), Bash(git diff:*), Read
+allowed-tools: Bash(git status *), Bash(git diff *), Read
 ---
 
 Show the current Git merge conflict status.
