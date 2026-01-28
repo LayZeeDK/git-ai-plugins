@@ -1,6 +1,6 @@
 ---
 description: Interactively resolve conflicts in a single file
-allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(date *), AskUserQuestion
+allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(git rev-parse *), Bash(date *), AskUserQuestion
 argument-hint: <file-path>
 ---
 
@@ -17,14 +17,19 @@ If the target file $1 is NOT in the list, inform user and suggest using `/lz-git
 
 Create a backup branch before making changes.
 
-First, get the UTC timestamp:
+First, get the current branch name:
+```bash
+git rev-parse --abbrev-ref HEAD
+```
+
+Then get the UTC timestamp:
 ```bash
 date -u +"%Y%m%d-%H%M%SZ"
 ```
 
-Then create the backup branch using that timestamp:
+Then create the backup branch using the branch name and timestamp:
 ```bash
-git branch backup/conflict-resolution-<TIMESTAMP>
+git branch lz-git/conflict/<BRANCH_NAME>/backup-<TIMESTAMP>
 ```
 
 ## Step 3: Read and Analyze File

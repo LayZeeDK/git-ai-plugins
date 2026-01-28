@@ -16,7 +16,10 @@ git merge feature/user-profile
 ## Step 1: Create Backup Branch
 
 ```bash
-git branch backup/conflict-resolution-20240115-143022
+git rev-parse --abbrev-ref HEAD
+# main
+
+git branch lz-git/conflict/main/backup-20240115-143022Z
 ```
 
 ## Step 2: Identify Conflicts

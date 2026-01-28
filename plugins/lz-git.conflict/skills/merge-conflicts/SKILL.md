@@ -30,10 +30,16 @@ For rebase conflicts, the meanings are reversed:
 
 ### Step 1: Create Backup Branch
 
-Before any resolution, create a backup:
+Before any resolution, create a backup. First get the current branch name, then create backup:
 
 ```bash
-git branch backup/conflict-resolution-$(date +%Y%m%d-%H%M%S)
+git rev-parse --abbrev-ref HEAD
+# Returns: <branch-name>
+
+date -u +"%Y%m%d-%H%M%SZ"
+# Returns: <timestamp>
+
+git branch lz-git/conflict/<branch-name>/backup-<timestamp>
 ```
 
 ### Step 2: Identify All Conflicts

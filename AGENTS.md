@@ -75,7 +75,7 @@ For agents, use the array format: `tools: ["Bash", "Read", "Edit"]`
 
 **Arguments**: Use `argument-hint` to document expected arguments. Parse values from `$ARGUMENTS`.
 
-**Safety**: Always create backup branches before destructive operations using UTC timestamps: `backup/<operation>-YYYYMMDD-HHMMSS`
+**Safety**: Always create backup branches before destructive operations using UTC timestamps. Include the plugin name and current branch for traceability: `<plugin>/<operation>/<branch>/backup-YYYYMMDD-HHMMSSZ`
 
 **Output Formatting**: Use fenced markdown code blocks with language identifiers for syntax highlighting.
 
@@ -137,8 +137,9 @@ The `!` backtick preprocessing syntax also blocks `$()`:
 For backup branches, use `date -u` which works on macOS, Linux, and Windows (via Git Bash). The `Z` suffix indicates UTC:
 
 ```bash
-date -u +"%Y%m%d-%H%M%SZ"
-git branch backup/operation-<TIMESTAMP>
+git rev-parse --abbrev-ref HEAD  # Get current branch
+date -u +"%Y%m%d-%H%M%SZ"         # Get UTC timestamp
+git branch <plugin>/<operation>/<branch>/backup-<TIMESTAMP>
 ```
 
 ## Code Style

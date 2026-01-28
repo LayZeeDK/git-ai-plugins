@@ -19,7 +19,10 @@ git rebase main
 ## Step 1: Create Backup Branch
 
 ```bash
-git branch backup/conflict-resolution-20240115-160045
+git rev-parse --abbrev-ref HEAD
+# feature/api-refactor
+
+git branch lz-git/conflict/feature/api-refactor/backup-20240115-160045Z
 ```
 
 ## Step 2: Understand the Rebase State
@@ -261,5 +264,5 @@ This is why the backup branch is important - even if you complete a bad rebase, 
 
 ```bash
 git checkout feature/api-refactor
-git reset --hard backup/conflict-resolution-20240115-160045
+git reset --hard lz-git/conflict/feature/api-refactor/backup-20240115-160045Z
 ```

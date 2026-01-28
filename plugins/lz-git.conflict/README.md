@@ -44,7 +44,7 @@ Create `.claude/lz-git.conflict.local.md` for custom settings:
 ```markdown
 ---
 resolution-mode: batch-preview
-backup-branch-prefix: backup/conflict-resolution
+backup-branch-prefix: lz-git/conflict
 lock-file-strategy: regenerate
 enabled: true
 ---
