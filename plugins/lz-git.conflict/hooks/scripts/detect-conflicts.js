@@ -27,7 +27,12 @@ process.stdin.on('end', () => {
       // Conflicts detected - use decision:block to prompt Claude directly
       console.log(JSON.stringify({
         decision: 'block',
-        reason: 'Merge conflicts detected. Inform the user they can use /lz-git.conflict:resolve-all to resolve all conflicts, or /lz-git.conflict:resolve <file> for a single file.'
+        reason: 'Merge conflicts detected. Inform the user of their options:\n' +
+          '- /lz-git.conflict:resolve - resolve all conflicts with batch preview\n' +
+          '- /lz-git.conflict:resolve <file> - resolve a single file interactively\n' +
+          '- /lz-git.conflict:accept-ours - accept current branch for all conflicts\n' +
+          '- /lz-git.conflict:accept-theirs - accept incoming branch for all conflicts\n' +
+          '- /lz-git.conflict:abort - abort and restore pre-conflict state'
       }));
     }
 

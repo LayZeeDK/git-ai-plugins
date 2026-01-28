@@ -2,6 +2,157 @@
 
 Comprehensive catalog of merge conflict patterns and their resolution strategies.
 
+## Conflict Type Taxonomy
+
+Git merge conflicts fall into two primary categories based on academic research (ISSTA 2022, Ghiotto et al. 2018):
+
+### Textual Conflicts (Immediate Detection)
+
+Git's merge algorithm cannot automatically combine the changes. Conflict markers appear in the file immediately after the merge attempt.
+
+**Key Statistics** (from Ghiotto et al., 175,805 conflicting chunks analyzed):
+- 87% of conflicts resolved without writing new code
+- 75% resolved by simply choosing one version
+- 94% of chunks have <50 lines of code per version
+- Median chunk size: 2-2.5 lines
+
+### Semantic Conflicts (Delayed Detection)
+
+Git merge succeeds textually, but the result is broken - compiler errors, failing tests, or runtime bugs. Research shows semantic conflicts are 26x more likely to introduce bugs than textual conflicts.
+
+---
+
+## Textual Conflict Subtypes
+
+### 1. Content Conflicts
+
+Same code region modified on both branches.
+
+**Complexity**: Medium
+
+**Example**: Both branches update a configuration value
+```
+<<<<<<< HEAD
+const CONNECTION_TIMEOUT = 5000;
+=======
+const CONNECTION_TIMEOUT = 30000;
+>>>>>>> feature/slow-networks
+```
+
+**Resolution**: Understand the intent behind each change. If slow-network support requires longer timeout, use the higher value. Consider if the change should be configurable instead.
+
+### 2. Disjoint Conflicts
+
+Parallel additions to the same collection or structure.
+
+**Complexity**: Low
+
+**Example**: Both branches add to an export list
+```
+<<<<<<< HEAD
+export { validateInput, sanitizeHtml };
+=======
+export { validateInput, parseMarkdown };
+>>>>>>> feature/markdown
+```
+
+**Resolution**: Include both additions - they don't conflict semantically:
+```javascript
+export { validateInput, sanitizeHtml, parseMarkdown };
+```
+
+### 3. Whitespace/Formatting Conflicts
+
+Non-functional formatting differences.
+
+**Complexity**: Low
+
+**Example**: Different indentation styles, trailing whitespace, line endings
+
+**Resolution**: Run project formatter (Prettier, eslint --fix, etc.) after resolving content. For pure whitespace conflicts, prefer incoming version for consistency.
+
+---
+
+## Semantic Conflict Subtypes
+
+These conflicts don't produce conflict markers - they're detected through compilation, type checking, or test failures after the merge completes.
+
+### 4. Rename/Refactor Conflicts
+
+Symbol renamed upstream while downstream adds new usages of old name.
+
+**Complexity**: Medium-High
+
+**Example** (from Microsoft Edge - ISSTA 2022):
+- Upstream: `IsIncognito()` renamed to `GetIncognito()`
+- Downstream: New code calls `browser->IsIncognito()`
+- Merge succeeds, but compilation fails: "no member named IsIncognito()"
+
+**Detection**: Compiler error referencing undefined symbol that existed before merge
+
+**Resolution**: Apply the same rename transformation to downstream code. Use `git log --all --oneline -- <file>` to find the rename commit and understand the transformation.
+
+### 5. Complex Transformation Conflicts
+
+Multiple simultaneous changes to types, naming conventions, or APIs.
+
+**Complexity**: High
+
+**Example** (from Microsoft Edge - ISSTA 2022):
+```cpp
+// Before (upstream)
+PermissionRequestType::PERMISSION_NOTIFICATIONS
+
+// After (upstream) - type AND constant renamed
+RequestType::kNotifications
+```
+
+Downstream code using `PermissionRequestType::PERMISSION_CAMERA_PAN_TILT_ZOOM` must become `RequestType::kCameraPanTiltZoom`.
+
+**Resolution**: Identify the transformation pattern (both type rename and constant naming convention change) and apply consistently to all downstream usages.
+
+### 6. API Signature Conflicts
+
+Method parameters or return types changed upstream.
+
+**Complexity**: High
+
+**Example**:
+- Upstream: `fetchUser(id)` changed to `fetchUser(id, options)`
+- Downstream: Added new calls to `fetchUser(id)`
+- Merge succeeds, but type checker fails
+
+**Detection**: Type errors about missing arguments or incompatible types
+
+**Resolution**: Update downstream call sites to match new signature. May require understanding what the new parameter does to provide correct values.
+
+### 7. Structural/File Move Conflicts
+
+File reorganization conflicts with content changes.
+
+**Complexity**: High
+
+**Example**:
+- Branch A: Renames `src/utils.ts` to `src/helpers/string-utils.ts`
+- Branch B: Adds new function to `src/utils.ts`
+- Merge: New function may end up in wrong location or be lost
+
+**Detection**: Missing exports, file not found errors, or silently lost changes
+
+**Resolution**: Use `git log --follow` to track file origin, apply changes to new location. Verify all changes from both branches are preserved.
+
+### 8. Entangled Conflicts
+
+Multiple developers' changes intertwined across function signatures, bodies, and call sites. Research shows these involve median of 4 developers and are 26x more likely to have bugs.
+
+**Complexity**: Very High
+
+**Example**: Function signature, implementation, and multiple callers all modified differently across branches.
+
+**Resolution**: Flag for careful human review. Do not auto-resolve. Consider breaking the resolution into smaller, verifiable steps. May require understanding the full intent of all changes involved.
+
+---
+
 ## Code Conflicts
 
 ### Import Statement Conflicts

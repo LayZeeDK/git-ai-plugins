@@ -1,7 +1,7 @@
 ---
 name: LZ Git Merge Conflict Resolution
 description: This skill should be used when the user asks to "resolve merge conflicts", "fix git conflicts", "handle rebase conflicts", "resolve conflicting files", "merge conflict help", or when Claude detects conflict markers (<<<<<<< HEAD) in files. Provides strategies for semantic code merging and conflict resolution.
-version: 0.1.0
+version: 0.2.0
 ---
 
 # Git Merge Conflict Resolution
@@ -9,6 +9,8 @@ version: 0.1.0
 ## Overview
 
 This skill provides knowledge and strategies for resolving Git merge conflicts intelligently. Rather than blindly choosing "ours" or "theirs", analyze conflicts semantically to produce correct, working code that incorporates intent from both sides.
+
+Based on academic research (ISSTA 2022, Ghiotto et al. 2018), 87% of conflicts can be resolved without writing new code, and 75% can be resolved by simply choosing one version.
 
 ## Conflict Marker Format
 
@@ -224,11 +226,17 @@ If resolved code doesn't pass validation:
 ### Reference Files
 
 For detailed patterns and edge cases:
-- **`references/conflict-patterns.md`** - Comprehensive conflict pattern catalog
+- **`references/conflict-patterns.md`** - Comprehensive conflict pattern catalog with research-based taxonomy
 - **`references/file-type-strategies.md`** - Detailed per-file-type resolution strategies
+- **`references/validation-checklist.md`** - Post-resolution validation procedures
+- **`references/git-configuration.md`** - Git conflict style configuration reference
+- **`references/prevention-strategies.md`** - Conflict prevention best practices
 
 ### Example Files
 
 Working resolution examples:
 - **`examples/simple-merge.md`** - Basic conflict resolution walkthrough
 - **`examples/complex-rebase.md`** - Multi-file rebase conflict resolution
+- **`examples/disjoint-additions.md`** - Resolving parallel additions to same structure
+- **`examples/semantic-rename-conflict.md`** - Handling symbol renames across branches
+- **`examples/complex-transformation.md`** - Multi-part naming convention changes
