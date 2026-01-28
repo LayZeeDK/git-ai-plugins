@@ -113,6 +113,25 @@ PostToolUse hooks may receive different input formats. Handle both:
 const result = input.tool_result || input.tool_response?.stdout || '';
 ```
 
+### Avoiding Command Substitution
+
+Commands containing `$()` or backtick substitution trigger permission prompts regardless of `allowed-tools` patterns. This is a security feature.
+
+```bash
+# BAD - triggers permission prompt even with Bash(git branch *) allowed
+git branch backup/$(date -u +"%Y%m%d-%H%M%SZ")
+
+# GOOD - split into separate commands
+date -u +"%Y%m%d-%H%M%SZ"    # Get timestamp first
+git branch backup/<TIMESTAMP> # Then use the value
+```
+
+The `!` backtick preprocessing syntax also blocks `$()`:
+```
+# This will fail with "Command contains $() command substitution"
+!`git branch backup/$(date -u +"%Y%m%d-%H%M%SZ")`
+```
+
 ### Cross-Platform Timestamps
 
 For backup branches, use `date -u` which works on macOS, Linux, and Windows (via Git Bash). The `Z` suffix indicates UTC:
@@ -121,8 +140,6 @@ For backup branches, use `date -u` which works on macOS, Linux, and Windows (via
 date -u +"%Y%m%d-%H%M%SZ"
 git branch backup/operation-<TIMESTAMP>
 ```
-
-Note: Split into two commands to avoid `$()` substitution which triggers permission prompts.
 
 ## Code Style
 
