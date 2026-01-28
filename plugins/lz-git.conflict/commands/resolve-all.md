@@ -12,7 +12,7 @@ Create a backup branch before making changes.
 
 First, get the UTC timestamp:
 ```bash
-date -u +"%Y%m%d-%H%M%S"
+date -u +"%Y%m%d-%H%M%SZ"
 ```
 
 Then create the backup branch using that timestamp:

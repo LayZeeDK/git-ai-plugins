@@ -115,11 +115,14 @@ const result = input.tool_result || input.tool_response?.stdout || '';
 
 ### Cross-Platform Timestamps
 
-For backup branches, use `date -u` which works on macOS, Linux, and Windows (via Git Bash):
+For backup branches, use `date -u` which works on macOS, Linux, and Windows (via Git Bash). The `Z` suffix indicates UTC:
 
 ```bash
-git branch backup/operation-$(date -u +"%Y%m%d-%H%M%S")
+date -u +"%Y%m%d-%H%M%SZ"
+git branch backup/operation-<TIMESTAMP>
 ```
+
+Note: Split into two commands to avoid `$()` substitution which triggers permission prompts.
 
 ## Code Style
 
