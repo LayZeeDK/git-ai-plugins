@@ -1,6 +1,6 @@
 ---
 description: Resolve all Git merge conflicts with batch preview
-allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(node *), Glob, Grep
+allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(date *), Glob, Grep
 argument-hint: [--mode=autonomous|interactive|batch]
 ---
 
@@ -8,10 +8,16 @@ Resolve all Git merge conflicts in the current repository.
 
 ## Step 1: Create Backup Branch
 
-Create a backup branch before making changes. **IMPORTANT**: Run this exact command as-is (do NOT substitute with PowerShell or other alternatives - the Bash tool uses Git Bash on Windows):
+Create a backup branch before making changes.
 
+First, get the UTC timestamp:
 ```bash
-git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")
+date -u +"%Y%m%d-%H%M%S"
+```
+
+Then create the backup branch using that timestamp:
+```bash
+git branch backup/conflict-resolution-<TIMESTAMP>
 ```
 
 ## Step 2: Identify All Conflicts

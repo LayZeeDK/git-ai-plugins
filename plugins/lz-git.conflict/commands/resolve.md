@@ -1,6 +1,6 @@
 ---
 description: Interactively resolve conflicts in a single file
-allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(node *), AskUserQuestion
+allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(date *), AskUserQuestion
 argument-hint: <file-path>
 ---
 
@@ -15,10 +15,16 @@ If the target file $1 is NOT in the list, inform user and suggest using `/lz-git
 
 ## Step 2: Create Backup
 
-Create a backup branch before making changes. **IMPORTANT**: Run this exact command as-is (do NOT substitute with PowerShell or other alternatives - the Bash tool uses Git Bash on Windows):
+Create a backup branch before making changes.
 
+First, get the UTC timestamp:
 ```bash
-git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")
+date -u +"%Y%m%d-%H%M%S"
+```
+
+Then create the backup branch using that timestamp:
+```bash
+git branch backup/conflict-resolution-<TIMESTAMP>
 ```
 
 ## Step 3: Read and Analyze File
