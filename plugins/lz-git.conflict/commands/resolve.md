@@ -1,6 +1,6 @@
 ---
 description: Interactively resolve conflicts in a single file
-allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch:*), Bash(git add:*), Bash(node:*), AskUserQuestion
+allowed-tools: Read, Write, Edit, Bash(git status:*), Bash(git diff:*), Bash(git branch *:*), Bash(git add:*), Bash(node:*), AskUserQuestion
 argument-hint: <file-path>
 ---
 
