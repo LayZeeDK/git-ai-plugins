@@ -8,8 +8,11 @@ Resolve all Git merge conflicts in the current repository.
 
 ## Step 1: Create Backup Branch
 
-Create a backup branch before making changes. Run this exact command (works on all platforms via Git Bash):
-!`git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")`
+Create a backup branch before making changes. **IMPORTANT**: Run this exact command as-is (do NOT substitute with PowerShell or other alternatives - the Bash tool uses Git Bash on Windows):
+
+```bash
+git branch backup/conflict-resolution-$(date -u +"%Y%m%d-%H%M%S")
+```
 
 ## Step 2: Identify All Conflicts
 
