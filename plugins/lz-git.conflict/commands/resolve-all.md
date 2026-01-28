@@ -1,12 +1,34 @@
 ---
 description: Resolve all Git merge conflicts with batch preview
-allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(git rev-parse *), Bash(date *), Glob, Grep
+allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(git rev-parse *), Bash(date *), Bash(test *), Glob, Grep
 argument-hint: [--mode=autonomous|interactive|batch]
 ---
 
 Resolve all Git merge conflicts in the current repository.
 
-## Step 1: Create Backup Branch
+## Step 1: Detect Git Operation Type
+
+Determine whether this is a merge, rebase, or cherry-pick by checking Git state files:
+
+```bash
+test -f .git/MERGE_HEAD && echo "MERGING"
+```
+
+```bash
+test -d .git/rebase-merge && echo "REBASING"
+```
+
+```bash
+test -d .git/rebase-apply && echo "REBASING"
+```
+
+```bash
+test -f .git/CHERRY_PICK_HEAD && echo "CHERRY-PICKING"
+```
+
+Remember the detected operation type for the final report.
+
+## Step 2: Create Backup Branch
 
 Create a backup branch before making changes.
 
@@ -25,14 +47,14 @@ Then create the backup branch using the branch name and timestamp:
 git branch lz-git/conflict/<BRANCH_NAME>/backup-<TIMESTAMP>
 ```
 
-## Step 2: Identify All Conflicts
+## Step 3: Identify All Conflicts
 
 List all files with conflicts:
 !`git diff --name-only --diff-filter=U`
 
 If no output (empty list), inform the user there are no conflicts and exit.
 
-## Step 3: Determine Resolution Mode
+## Step 4: Determine Resolution Mode
 
 Parse arguments from: $ARGUMENTS
 
@@ -40,7 +62,7 @@ Parse arguments from: $ARGUMENTS
 - If `--mode=interactive`: For each conflict, show both versions and ask user approval
 - If `--mode=batch` or no mode specified: Analyze all conflicts, show proposed resolutions, wait for approval
 
-## Step 4: For Each Conflicted File
+## Step 5: For Each Conflicted File
 
 1. Read the entire file to understand context
 2. Identify all conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
@@ -62,7 +84,7 @@ When showing conflicts to the user, use fenced code blocks with the appropriate 
 ```
 ```
 
-## Step 5: Apply Smart Merge Strategy
+## Step 6: Apply Smart Merge Strategy
 
 For code files (JS, TS, Python, etc.):
 - Import statements: combine unique imports
@@ -78,14 +100,14 @@ For lock files (package-lock.json, yarn.lock, pnpm-lock.yaml):
 - Accept incoming version
 - Recommend regenerating with package manager
 
-## Step 6: Validate Resolutions
+## Step 7: Validate Resolutions
 
 After resolving each file:
 1. Ensure all conflict markers are removed
 2. Check syntax validity where possible
 3. Report what was combined from each side
 
-## Step 7: Stage and Report
+## Step 8: Stage and Report
 
 Stage all resolved files using `git add <filename>` for each resolved file.
 
@@ -93,6 +115,10 @@ Report:
 - Number of files resolved
 - Summary of changes per file
 - Any files that need human review
-- Next steps (commit or continue rebase)
+- Next steps based on detected operation type:
+  - **MERGING**: `git commit` to complete the merge
+  - **REBASING**: `git rebase --continue` to continue the rebase
+  - **CHERRY-PICKING**: `git cherry-pick --continue` to continue
+  - **Unknown**: Show both merge and rebase options
 
 Use the merge-conflicts skill for detailed resolution strategies.

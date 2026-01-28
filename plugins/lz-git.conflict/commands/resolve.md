@@ -1,17 +1,37 @@
 ---
 description: Interactively resolve conflicts in a single file
-allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(git rev-parse *), Bash(date *), AskUserQuestion
+allowed-tools: Read, Write, Edit, Bash(git status *), Bash(git diff *), Bash(git branch *), Bash(git add *), Bash(git rev-parse *), Bash(date *), Bash(test *), AskUserQuestion
 argument-hint: <file-path>
 ---
 
 Interactively resolve merge conflicts in a single file: $1
 
-## Step 1: Validate File
+## Step 1: Validate File and Detect Operation
 
 Check that the file has conflicts by listing conflicted files:
 !`git diff --name-only --diff-filter=U`
 
 If the target file $1 is NOT in the list, inform user and suggest using `/lz-git.conflict:status` to see conflicted files.
+
+Detect the Git operation type by checking state files:
+
+```bash
+test -f .git/MERGE_HEAD && echo "MERGING"
+```
+
+```bash
+test -d .git/rebase-merge && echo "REBASING"
+```
+
+```bash
+test -d .git/rebase-apply && echo "REBASING"
+```
+
+```bash
+test -f .git/CHERRY_PICK_HEAD && echo "CHERRY-PICKING"
+```
+
+Remember the detected operation type for the final report.
 
 ## Step 2: Create Backup
 
@@ -77,7 +97,7 @@ After all conflicts in the file are resolved:
 2. Check basic syntax validity
 3. Show the final resolved file content
 
-## Step 5: Stage
+## Step 5: Stage and Report
 
 Stage the resolved file using `git add` with the filename.
 
@@ -85,6 +105,10 @@ Report:
 - Number of conflicts resolved in this file
 - Summary of resolutions applied
 - Remaining conflicted files (if any)
-- Next steps
+- Next steps based on detected operation type:
+  - **MERGING**: If no remaining conflicts, `git commit` to complete the merge
+  - **REBASING**: If no remaining conflicts, `git rebase --continue` to continue
+  - **CHERRY-PICKING**: If no remaining conflicts, `git cherry-pick --continue` to continue
+  - If conflicts remain, suggest `/lz-git.conflict:resolve <file>` for next file
 
 Use the merge-conflicts skill for resolution strategies.
