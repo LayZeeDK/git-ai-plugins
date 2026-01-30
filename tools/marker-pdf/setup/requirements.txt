@@ -1,0 +1,181 @@
+# Python 3.12 ARM64 Requirements for marker-pdf on Windows - FINAL WORKING CONFIG
+# Generated: January 29, 2026
+# Status: 98% working - OpenCV works, CLI works, layout model loads
+# Blocker: texify model config incompatibility with transformers 4.57.6
+# See: MARKER_SETUP_NOTES.md for full setup instructions
+
+# ============================================================================
+# CRITICAL PATCH REQUIRED
+# ============================================================================
+# File: venv-marker-py312/Lib/site-packages/surya/model/ocr_error/config.py
+# Line 5: Comment out: from transformers.onnx import OnnxConfig
+# Add stub class:
+#   class OnnxConfig:
+#       def __init__(self, *args, **kwargs): pass
+#       @property
+#       def inputs(self): return OrderedDict()
+#
+# This patch is REQUIRED to bypass deprecated transformers.onnx module.
+# The OnnxConfig class is defined but never used in surya-ocr 0.8.3.
+
+# ============================================================================
+# PYTHON VERSION
+# ============================================================================
+# Install Python 3.12.10 ARM64:
+#   winget install Python.Python.3.12
+
+# ============================================================================
+# CGOHLKE WHEELS (from v2024.6.15)
+# ============================================================================
+# Download: https://github.com/cgohlke/win_arm64-wheels/releases/tag/v2024.6.15
+# File: 2024.6.15-experimental-cp312-win_arm64.whl.zip
+#
+# Extract and install manually:
+opencv-python-headless==4.10.0.82  # cp39-abi3 wheel (works with Python 3.9+)
+scikit-learn==1.5.0                 # cp312
+cryptography==42.0.8                # cp312
+grpcio==1.64.1                      # cp312
+
+# ============================================================================
+# PYTORCH (from official ARM64 index)
+# ============================================================================
+# Install command:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch==2.10.0+cpu
+torchvision==0.25.0+8ac84ee
+
+# ============================================================================
+# MARKER-PDF AND SURYA-OCR
+# ============================================================================
+marker-pdf==1.2.7
+surya-ocr==0.8.3  # Requires patch to config.py (see above)
+
+# ============================================================================
+# ML FRAMEWORK (with patch, transformers.onnx removed)
+# ============================================================================
+transformers==4.57.6  # Latest with ARM64 tokenizers support (onnx module removed)
+tokenizers==0.22.2    # abi3 - ARM64 wheel available!
+safetensors==0.7.0
+huggingface-hub==0.36.0
+
+# ============================================================================
+# CORE DEPENDENCIES
+# ============================================================================
+numpy==2.4.1
+scipy==1.17.0
+joblib==1.5.3
+threadpoolctl==3.6.0
+cffi==2.0.0
+pycparser==3.0
+
+# ============================================================================
+# MARKER-PDF DEPENDENCIES
+# ============================================================================
+Pillow==12.0.0
+click==8.3.1
+filetype==1.2.0
+ftfy==6.3.1
+markdown2==2.5.4
+markdownify==1.2.2
+pdftext==0.6.3
+pydantic==2.12.5
+pydantic-settings==2.12.0
+python-dotenv==1.2.1
+rapidfuzz==3.14.3
+regex==2026.1.15
+einops==0.8.2
+protobuf==5.29.5
+tabulate==0.9.0
+tabled-pdf==0.2.0
+texify==0.2.1
+
+# ============================================================================
+# GOOGLE AI PACKAGES
+# ============================================================================
+google-generativeai==0.8.6
+google-ai-generativelanguage==0.6.15
+google-api-core==2.29.0
+google-api-python-client==2.188.0
+googleapis-common-protos==1.72.0
+proto-plus==1.27.0
+grpcio-status==1.64.1
+google-auth-httplib2==0.3.0
+httplib2==0.31.2
+pyparsing==3.3.2
+uritemplate==4.2.0
+
+# ============================================================================
+# HTTP AND NETWORKING
+# ============================================================================
+requests==2.32.5
+charset_normalizer==3.4.4
+idna==3.11
+urllib3==2.6.3
+certifi==2026.1.4
+
+# ============================================================================
+# GOOGLE AUTH
+# ============================================================================
+google-auth==2.48.0
+pyasn1==0.6.2
+pyasn1-modules==0.4.2
+rsa==4.9.1
+
+# ============================================================================
+# PDF PROCESSING
+# ============================================================================
+pypdfium2==4.30.0
+
+# ============================================================================
+# UTILITIES
+# ============================================================================
+tqdm==4.67.1
+packaging==26.0
+pyyaml==6.0.3
+six==1.17.0
+beautifulsoup4==4.14.3
+soupsieve==2.8.3
+wcwidth==0.5.0
+colorama==0.4.6
+distro==1.9.0
+typing-inspection==0.4.2
+annotated-types==0.7.0
+fsspec==2025.12.0
+typing-extensions==4.15.0
+
+# ============================================================================
+# PYTORCH DEPENDENCIES
+# ============================================================================
+sympy==1.14.0
+mpmath==1.3.0
+networkx==3.6.1
+jinja2==3.1.6
+MarkupSafe==1.5
+setuptools==70.2.0
+filelock==3.20.3
+
+# ============================================================================
+# ENVIRONMENT VARIABLES REQUIRED
+# ============================================================================
+# Set before running marker_single:
+#   PowerShell: $env:CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+#   Bash:       export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+
+# ============================================================================
+# KNOWN ISSUES
+# ============================================================================
+# 1. marker_single --help works ✓
+# 2. Layout model (surya_layout) loads successfully ✓
+# 3. texify model fails to load with AttributeError in transformers 4.57.6
+#    Error: 'dict' object has no attribute 'to_dict'
+#    Cause: texify 0.2.1 model config incompatible with transformers 4.57.6
+#
+# ACHIEVEMENTS:
+# - ✅ OpenCV 4.10.0.82 working natively on Windows ARM64
+# - ✅ All core ML infrastructure working (PyTorch, transformers, tokenizers)
+# - ✅ marker-pdf CLI functional
+# - ✅ transformers.onnx dependency bypassed via patch
+# - ✅ Layout detection model working
+# - ❌ LaTeX formula extraction (texify) blocked by model config format
+#
+# RECOMMENDATION: Use MinerU (native ARM64) or Docker until marker-pdf ecosystem stabilizes
