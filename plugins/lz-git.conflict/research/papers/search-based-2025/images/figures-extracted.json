@@ -1,0 +1,648 @@
+{
+  "paper": "search-based-2025",
+  "source": {
+    "paper": "search-based-2025",
+    "source": "camposjunior2025.pdf",
+    "title": "Towards a feasible evaluation function for search-based merge conflict resolution",
+    "pageSize": {
+      "width": 1458,
+      "height": 2160,
+      "scale": 3,
+      "comment": "Header ends ~y=165. Figures start y=240-300. Exclude captions."
+    },
+    "figures": [
+      {
+        "id": "fig-01",
+        "label": "Figure 1",
+        "caption": "Example random resolution candidates for the conflict displayed in Listing 1.",
+        "page": 4,
+        "type": "table",
+        "bbox": {
+          "x": 105,
+          "y": 240,
+          "width": 1250,
+          "height": 540
+        }
+      },
+      {
+        "id": "fig-02",
+        "label": "Figure 2",
+        "caption": "Diagram illustrating the datasets used for each research question.",
+        "page": 7,
+        "type": "diagram",
+        "mermaid": true,
+        "bbox": {
+          "x": 80,
+          "y": 240,
+          "width": 1300,
+          "height": 500
+        }
+      },
+      {
+        "id": "fig-03",
+        "label": "Figure 3",
+        "caption": "Similarity between conflict resolutions and each conflict parent (V₁ and V₂).",
+        "page": 11,
+        "type": "boxplot",
+        "bbox": {
+          "x": 105,
+          "y": 300,
+          "width": 1250,
+          "height": 680
+        }
+      },
+      {
+        "id": "fig-04",
+        "label": "Figure 4",
+        "caption": "Scatter plot for the similarity between resolution and V₁ parent and resolution and V₂ parent.",
+        "page": 12,
+        "type": "scatter",
+        "bbox": {
+          "x": 105,
+          "y": 260,
+          "width": 1250,
+          "height": 820
+        }
+      },
+      {
+        "id": "fig-05",
+        "label": "Figure 5",
+        "caption": "Distribution of similarities between generated candidates and their resolution and between the candidates and each parent.",
+        "page": 13,
+        "type": "multi-plot",
+        "bbox": {
+          "x": 60,
+          "y": 260,
+          "width": 1340,
+          "height": 460
+        }
+      },
+      {
+        "id": "fig-06",
+        "label": "Figure 6",
+        "caption": "Box plots showing the average similarity between random candidates and V₁, V₂, and the resolution.",
+        "page": 14,
+        "type": "boxplot",
+        "bbox": {
+          "x": 180,
+          "y": 280,
+          "width": 1100,
+          "height": 660
+        }
+      },
+      {
+        "id": "fig-07",
+        "label": "Figure 7",
+        "caption": "Distribution of average correlation (ρ) values between the similarities of candidates with each conflict parent, and between candidates and the conflict resolutions.",
+        "page": 14,
+        "type": "boxplot",
+        "bbox": {
+          "x": 260,
+          "y": 1060,
+          "width": 940,
+          "height": 640
+        }
+      },
+      {
+        "id": "fig-08",
+        "label": "Figure 8",
+        "caption": "Distribution of similarity between all random candidates and parents using each aggregation function.",
+        "page": 16,
+        "type": "heatmap-grid",
+        "bbox": {
+          "x": 60,
+          "y": 240,
+          "width": 1340,
+          "height": 945
+        }
+      },
+      {
+        "id": "fig-09",
+        "label": "Figure 9",
+        "caption": "Box plots showing the average similarity between random candidates and parents aggregated by Mean, Harmonic Mean, Min, and Max.",
+        "page": 17,
+        "type": "boxplot",
+        "bbox": {
+          "x": 105,
+          "y": 280,
+          "width": 1250,
+          "height": 680
+        }
+      },
+      {
+        "id": "fig-10",
+        "label": "Figure 10",
+        "caption": "Distribution of average correlation (ρ) values for aggregation functions.",
+        "page": 18,
+        "type": "boxplot",
+        "bbox": {
+          "x": 105,
+          "y": 240,
+          "width": 1250,
+          "height": 620
+        }
+      },
+      {
+        "id": "fig-11",
+        "label": "Figure 11",
+        "caption": "Histogram showing the Simᵣ₋ₚ-values distribution in the dataset.",
+        "page": 19,
+        "type": "histogram",
+        "bbox": {
+          "x": 105,
+          "y": 260,
+          "width": 1250,
+          "height": 700
+        }
+      },
+      {
+        "id": "fig-12",
+        "label": "Figure 12",
+        "caption": "Scatter plot between Simᵣ₋ₚ-value and resolution, chunk, and candidate sizes.",
+        "page": 19,
+        "type": "scatter-grid",
+        "bbox": {
+          "x": 105,
+          "y": 1100,
+          "width": 1250,
+          "height": 400
+        }
+      },
+      {
+        "id": "fig-13",
+        "label": "Figure 13",
+        "caption": "Scatter plot for the chunk size and resolution sizes of the chunks in the dataset.",
+        "page": 20,
+        "type": "scatter-grid",
+        "bbox": {
+          "x": 105,
+          "y": 260,
+          "width": 1250,
+          "height": 820
+        }
+      },
+      {
+        "id": "fig-14",
+        "label": "Figure 14",
+        "caption": "Comparison of the resolution and chunk sizes differences.",
+        "page": 21,
+        "type": "boxplot",
+        "bbox": {
+          "x": 105,
+          "y": 280,
+          "width": 1250,
+          "height": 720
+        }
+      },
+      {
+        "id": "fig-15",
+        "label": "Figure 15",
+        "caption": "Scatter plot for the V₁ and V₂ sizes of the chunks for the generated candidates.",
+        "page": 22,
+        "type": "scatter-grid",
+        "bbox": {
+          "x": 105,
+          "y": 240,
+          "width": 1250,
+          "height": 700
+        }
+      },
+      {
+        "id": "fig-16",
+        "label": "Figure 16",
+        "caption": "Scatter plots showing the relationship between candidate-parent similarity and candidate-resolution similarity for 50 chunks.",
+        "page": 24,
+        "type": "scatter-grid-50",
+        "bbox": {
+          "x": 105,
+          "y": 260,
+          "width": 1250,
+          "height": 1180
+        }
+      },
+      {
+        "id": "fig-17",
+        "label": "Figure 17",
+        "caption": "Box plots showing SBCR candidate similarity and generation time.",
+        "page": 28,
+        "type": "boxplot-dual",
+        "bbox": {
+          "x": 105,
+          "y": 250,
+          "width": 1250,
+          "height": 480
+        }
+      },
+      {
+        "id": "listing-04",
+        "label": "Listing 4",
+        "caption": "Progression of candidate quality for chunk #6 (ρ = 0.14) guided by parent similarity.",
+        "page": 25,
+        "type": "code-diff-table",
+        "bbox": {
+          "x": 105,
+          "y": 960,
+          "width": 1250,
+          "height": 420
+        }
+      },
+      {
+        "id": "listing-05",
+        "label": "Listing 5",
+        "caption": "Progression of candidate quality for chunk #42 (ρ = 1.00) guided by parent similarity.",
+        "page": 26,
+        "type": "code-diff-table",
+        "bbox": {
+          "x": 105,
+          "y": 380,
+          "width": 1250,
+          "height": 1260
+        }
+      }
+    ]
+  },
+  "renderScale": 3,
+  "extracted": [
+    {
+      "id": "fig-01",
+      "label": "Figure 1",
+      "caption": "Example random resolution candidates for the conflict displayed in Listing 1.",
+      "page": 4,
+      "type": "table",
+      "bbox": {
+        "x": 105,
+        "y": 240,
+        "width": 1250,
+        "height": 540
+      },
+      "file": "fig-01.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 240,
+        "width": 1250,
+        "height": 540
+      }
+    },
+    {
+      "id": "fig-02",
+      "label": "Figure 2",
+      "caption": "Diagram illustrating the datasets used for each research question.",
+      "page": 7,
+      "type": "diagram",
+      "mermaid": true,
+      "bbox": {
+        "x": 80,
+        "y": 240,
+        "width": 1300,
+        "height": 500
+      },
+      "file": "fig-02.png",
+      "scaledBbox": {
+        "left": 80,
+        "top": 240,
+        "width": 1300,
+        "height": 500
+      }
+    },
+    {
+      "id": "fig-03",
+      "label": "Figure 3",
+      "caption": "Similarity between conflict resolutions and each conflict parent (V₁ and V₂).",
+      "page": 11,
+      "type": "boxplot",
+      "bbox": {
+        "x": 105,
+        "y": 300,
+        "width": 1250,
+        "height": 680
+      },
+      "file": "fig-03.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 300,
+        "width": 1250,
+        "height": 680
+      }
+    },
+    {
+      "id": "fig-04",
+      "label": "Figure 4",
+      "caption": "Scatter plot for the similarity between resolution and V₁ parent and resolution and V₂ parent.",
+      "page": 12,
+      "type": "scatter",
+      "bbox": {
+        "x": 105,
+        "y": 260,
+        "width": 1250,
+        "height": 820
+      },
+      "file": "fig-04.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 260,
+        "width": 1250,
+        "height": 820
+      }
+    },
+    {
+      "id": "fig-05",
+      "label": "Figure 5",
+      "caption": "Distribution of similarities between generated candidates and their resolution and between the candidates and each parent.",
+      "page": 13,
+      "type": "multi-plot",
+      "bbox": {
+        "x": 60,
+        "y": 260,
+        "width": 1340,
+        "height": 460
+      },
+      "file": "fig-05.png",
+      "scaledBbox": {
+        "left": 60,
+        "top": 260,
+        "width": 1340,
+        "height": 460
+      }
+    },
+    {
+      "id": "fig-06",
+      "label": "Figure 6",
+      "caption": "Box plots showing the average similarity between random candidates and V₁, V₂, and the resolution.",
+      "page": 14,
+      "type": "boxplot",
+      "bbox": {
+        "x": 180,
+        "y": 280,
+        "width": 1100,
+        "height": 660
+      },
+      "file": "fig-06.png",
+      "scaledBbox": {
+        "left": 180,
+        "top": 280,
+        "width": 1100,
+        "height": 660
+      }
+    },
+    {
+      "id": "fig-07",
+      "label": "Figure 7",
+      "caption": "Distribution of average correlation (ρ) values between the similarities of candidates with each conflict parent, and between candidates and the conflict resolutions.",
+      "page": 14,
+      "type": "boxplot",
+      "bbox": {
+        "x": 260,
+        "y": 1060,
+        "width": 940,
+        "height": 640
+      },
+      "file": "fig-07.png",
+      "scaledBbox": {
+        "left": 260,
+        "top": 1060,
+        "width": 940,
+        "height": 640
+      }
+    },
+    {
+      "id": "fig-08",
+      "label": "Figure 8",
+      "caption": "Distribution of similarity between all random candidates and parents using each aggregation function.",
+      "page": 16,
+      "type": "heatmap-grid",
+      "bbox": {
+        "x": 60,
+        "y": 240,
+        "width": 1340,
+        "height": 945
+      },
+      "file": "fig-08.png",
+      "scaledBbox": {
+        "left": 60,
+        "top": 240,
+        "width": 1340,
+        "height": 945
+      }
+    },
+    {
+      "id": "fig-09",
+      "label": "Figure 9",
+      "caption": "Box plots showing the average similarity between random candidates and parents aggregated by Mean, Harmonic Mean, Min, and Max.",
+      "page": 17,
+      "type": "boxplot",
+      "bbox": {
+        "x": 105,
+        "y": 280,
+        "width": 1250,
+        "height": 680
+      },
+      "file": "fig-09.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 280,
+        "width": 1250,
+        "height": 680
+      }
+    },
+    {
+      "id": "fig-10",
+      "label": "Figure 10",
+      "caption": "Distribution of average correlation (ρ) values for aggregation functions.",
+      "page": 18,
+      "type": "boxplot",
+      "bbox": {
+        "x": 105,
+        "y": 240,
+        "width": 1250,
+        "height": 620
+      },
+      "file": "fig-10.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 240,
+        "width": 1250,
+        "height": 620
+      }
+    },
+    {
+      "id": "fig-11",
+      "label": "Figure 11",
+      "caption": "Histogram showing the Simᵣ₋ₚ-values distribution in the dataset.",
+      "page": 19,
+      "type": "histogram",
+      "bbox": {
+        "x": 105,
+        "y": 260,
+        "width": 1250,
+        "height": 700
+      },
+      "file": "fig-11.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 260,
+        "width": 1250,
+        "height": 700
+      }
+    },
+    {
+      "id": "fig-12",
+      "label": "Figure 12",
+      "caption": "Scatter plot between Simᵣ₋ₚ-value and resolution, chunk, and candidate sizes.",
+      "page": 19,
+      "type": "scatter-grid",
+      "bbox": {
+        "x": 105,
+        "y": 1100,
+        "width": 1250,
+        "height": 400
+      },
+      "file": "fig-12.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 1100,
+        "width": 1250,
+        "height": 400
+      }
+    },
+    {
+      "id": "fig-13",
+      "label": "Figure 13",
+      "caption": "Scatter plot for the chunk size and resolution sizes of the chunks in the dataset.",
+      "page": 20,
+      "type": "scatter-grid",
+      "bbox": {
+        "x": 105,
+        "y": 260,
+        "width": 1250,
+        "height": 820
+      },
+      "file": "fig-13.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 260,
+        "width": 1250,
+        "height": 820
+      }
+    },
+    {
+      "id": "fig-14",
+      "label": "Figure 14",
+      "caption": "Comparison of the resolution and chunk sizes differences.",
+      "page": 21,
+      "type": "boxplot",
+      "bbox": {
+        "x": 105,
+        "y": 280,
+        "width": 1250,
+        "height": 720
+      },
+      "file": "fig-14.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 280,
+        "width": 1250,
+        "height": 720
+      }
+    },
+    {
+      "id": "fig-15",
+      "label": "Figure 15",
+      "caption": "Scatter plot for the V₁ and V₂ sizes of the chunks for the generated candidates.",
+      "page": 22,
+      "type": "scatter-grid",
+      "bbox": {
+        "x": 105,
+        "y": 240,
+        "width": 1250,
+        "height": 700
+      },
+      "file": "fig-15.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 240,
+        "width": 1250,
+        "height": 700
+      }
+    },
+    {
+      "id": "fig-16",
+      "label": "Figure 16",
+      "caption": "Scatter plots showing the relationship between candidate-parent similarity and candidate-resolution similarity for 50 chunks.",
+      "page": 24,
+      "type": "scatter-grid-50",
+      "bbox": {
+        "x": 105,
+        "y": 260,
+        "width": 1250,
+        "height": 1180
+      },
+      "file": "fig-16.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 260,
+        "width": 1250,
+        "height": 1180
+      }
+    },
+    {
+      "id": "fig-17",
+      "label": "Figure 17",
+      "caption": "Box plots showing SBCR candidate similarity and generation time.",
+      "page": 28,
+      "type": "boxplot-dual",
+      "bbox": {
+        "x": 105,
+        "y": 250,
+        "width": 1250,
+        "height": 480
+      },
+      "file": "fig-17.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 250,
+        "width": 1250,
+        "height": 480
+      }
+    },
+    {
+      "id": "listing-04",
+      "label": "Listing 4",
+      "caption": "Progression of candidate quality for chunk #6 (ρ = 0.14) guided by parent similarity.",
+      "page": 25,
+      "type": "code-diff-table",
+      "bbox": {
+        "x": 105,
+        "y": 960,
+        "width": 1250,
+        "height": 420
+      },
+      "file": "listing-04.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 960,
+        "width": 1250,
+        "height": 420
+      }
+    },
+    {
+      "id": "listing-05",
+      "label": "Listing 5",
+      "caption": "Progression of candidate quality for chunk #42 (ρ = 1.00) guided by parent similarity.",
+      "page": 26,
+      "type": "code-diff-table",
+      "bbox": {
+        "x": 105,
+        "y": 380,
+        "width": 1250,
+        "height": 1260
+      },
+      "file": "listing-05.png",
+      "scaledBbox": {
+        "left": 105,
+        "top": 380,
+        "width": 1250,
+        "height": 1260
+      }
+    }
+  ]
+}
