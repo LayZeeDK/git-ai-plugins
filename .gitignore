@@ -21,3 +21,31 @@ tmpclaude-*-cwd/
 !tmpclaude--cwd/
 nul
 NUL
+
+# Python virtual environments
+venv/
+venv-*/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python package caches
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+.Python
+dist/
+build/
+wheels/
+
+# Research PDFs and outputs
+plugins/lz-git.conflict/research/output*/
+plugins/lz-git.conflict/research/wheels/*.whl
+plugins/lz-git.conflict/research/wheels/*.zip
+plugins/lz-git.conflict/research/docstrange/
+plugins/lz-git.conflict/research/*.log
+
+# marker-pdf tool outputs
+tools/marker-pdf/venv-*/
+tools/marker-pdf/output*/
