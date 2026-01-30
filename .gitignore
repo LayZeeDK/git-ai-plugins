@@ -21,6 +21,9 @@ tmpclaude-*-cwd/
 !tmpclaude--cwd/
 nul
 NUL
+/CLAUDE.local.md
+/.claude/CLAUDE.local.md
+/.claude/settings.local.json
 
 # Python virtual environments
 venv/
