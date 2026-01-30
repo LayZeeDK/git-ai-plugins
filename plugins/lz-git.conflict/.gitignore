@@ -1,2 +1,8 @@
 # Plugin settings (user-specific)
 .claude/*.local.md
+
+# Cloned research repositories (external)
+research/repos/
+
+# Rendered PDF pages (regenerable from source PDFs)
+research/papers/pages/
